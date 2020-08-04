@@ -7,7 +7,7 @@ proxies = {
 headers_in = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
     'Cookie': "",
-    'Host': 'www.zhihu.com',
+    'Host': 'www.baidu.com',
 }
 
 def http_req(url,req_data={},method='GET',heads=headers_in,fn=""):
@@ -32,7 +32,6 @@ def http_req(url,req_data={},method='GET',heads=headers_in,fn=""):
     except requests.exceptions.ConnectTimeout as e:
         print('连接超时')
 
-    #print('后续的程序继续执行...')
 
 #proxies={}
 

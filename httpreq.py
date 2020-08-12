@@ -4,6 +4,7 @@ proxies = {
     'http': 'http://127.0.0.1:8888',
     'https': 'http://127.0.0.1:8888',
 }
+proxies = {}
 headers_in = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
     'Cookie': "",
@@ -34,14 +35,18 @@ def http_req(url,req_data={},method='GET',heads=headers_in,fn=""):
 
 
 #proxies={}
-
+geturl='http://httpbin.org/get'
+posturl='http://httpbin.org/post'
+geturl="http://127.0.0.1/get.php"
+posturl="http://127.0.0.1/post.php"
 req_data={"name":'liujun','addr':'beijing'}
-http_req('http://httpbin.org/get',req_data)
-http_req('http://httpbin.org/post',req_data,method='POST')
-http_req('http://httpbin.org/post',req_data,method="POST",heads=headers_in,fn="car.jpg")
 
-import requests
-s = requests.Session()
-s.get('http://httpbin.org/cookies/set/number/123456789')
-r = s.get('http://httpbin.org/cookies')
-print(r.text)
+http_req(geturl,req_data)
+http_req(posturl,req_data,method='POST')
+http_req(posturl,req_data,method="POST",heads=headers_in,fn="car.jpg")
+
+#import requests
+#s = requests.Session()
+#s.get('http://httpbin.org/cookies/set/number/123456789')
+#r = s.get('http://httpbin.org/cookies')
+#print(r.text)

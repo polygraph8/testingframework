@@ -1,16 +1,6 @@
 from mitmproxy import ctx
-
-def responseheaders( flow):
-    fp=open("resonseheader.log","a+")
-    headers = flow.response.headers
-    fp.write(repr(headers))
-    fp.close()
-    """
-        HTTP response headers were successfully read. At this point, the body
-        is empty.
-    """
-
-def record2db(flow):
+from mylib import myMySQL
+def record2file(flow):
     fp=open("url2db.log","a+",encoding='utf-8')
     fp.write(flow.request.url + "\n")
     fp.write(flow.request.method +"\n")
@@ -28,6 +18,21 @@ def record2db(flow):
     fp.write("\n\ncookie\n\n")
     fp.write(repr(flow.request.cookies))
     fp.close()
+
+def record2db(flow):
+    host = flow.request.host
+    url = flow.request.url
+    method= flow.request.method
+    cookie = flow.response.cookies
+    headers = flow.response.headers
+    data = flow.request.text
+    response_header = flow.response.headers
+    response_text = flow.response.text
+    response_status_code = flow.response.status_code
+    response_cookie = flow.response.cookies
+    db=  myMySQL("test")
+    db.myinsert_proxyed(host,url,method,cookie,headers,data,response_header,response_cookie,response_text,response_status_code)
+
 
 def response(flow):
     response =flow.response
@@ -64,3 +69,5 @@ def response(flow):
                  fp.write(response.content)
                  fp.write(b"\nendSession\n")
                  fp.close()
+
+

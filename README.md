@@ -1,8 +1,7 @@
 # testingframework， 测试自动化框架   
-A light Testng framework  base on python , for web testing ,android/IOS app testing and testing for service interface.  
-
-时间安排：
-          2天   
+A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
+It record the web http request via mitmproxy, and auto generate testcase based on the recorded request.  
+Then you can replay the case . 
 设计目标:   
     希望在手动测试和自动化测试中建立一个桥梁，利用手动测试产生的结果，来自动生成测试用例。
  

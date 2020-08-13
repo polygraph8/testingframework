@@ -102,9 +102,10 @@ class myMySQL():
         m.update(data.encode("utf-8"))
         datamd5 = m.hexdigest()
 
-        sql= "insert into proxyed(host,url,method,cookie,headers,data,datamd5,response_header,response_cookie,response_text,response_status_code) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" %  \
+        sql= "insert into proxyed(host,url,method,cookie,headers,data,datamd5,response_header,response_cookie,response_text,response_status_code) values('%s','%s','%s','%s',\"%s\",'%s','%s',\"%s\",'%s','%s','%s')" %  \
                                 (host, url, method, cookie, headers, data, datamd5, response_header, response_cookie, response_text, response_status_code)
         self.myquery(sql)
+        return sql
 
     def myinsert_gencase(self,host="",url="",method="",cookie="1",headers="2",data="3",response_header="4",response_cookie="5",response_text="6",response_status_code="7"):
         m= hashlib.md5()

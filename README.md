@@ -1,4 +1,4 @@
-# testingframework， 手动转自动化测试框架   From Manual testing to  Automated Testing Testing Framework
+#  手动转自动化测试框架   From Manual testing to  Automated Testing Testing Framework
 
 A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
 It can do :
@@ -79,13 +79,12 @@ It can do :
        # s1M = 'a'*1024*1024
         return (snull, s1k)
  
-![Image text](image/gencase.png)
- 
- 
- 后续工作：
-      可以集成压力测试工具
-      安全测试工具： 
+
+
+**问题反馈**   914529035@qq.com
       
+**License**
+This library is distributed under the GPL license .
 
 
 

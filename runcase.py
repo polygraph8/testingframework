@@ -51,7 +51,7 @@ def headers2dict(headerstr):
     header_dict = {}
     for header in arr:
         k,v = header.split("', '")
-        if k == "Cookie" :
+    if k != "Content-Length" and k != "Data":
             header_dict[k] = v
 #            print("_%s:%s_" %(k,v))
     return header_dict

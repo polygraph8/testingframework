@@ -22,7 +22,7 @@ class myMySQL():
             use_unicode=True)
             self.cursor  = self.connect.cursor();
             self.myquery("set names utf8;")
-            #  create database TEST DEFAULT CHARACTER SET utf8;    建表时采用这个方法，则可以避免UTF-8 字符存不进去。
+
 
         except Exception as e:
             print(e)
@@ -42,20 +42,15 @@ class myMySQL():
         label = False
         insert_id= -1
         try:
- #           print("insert sql is : %s" % (query,))
             self.cursor.execute(query)
             insert_id= self.connect.insert_id()
             self.connect.commit()
             label = True
         except Exception as e:
- #           self.connect.rollback()
             print(e)
- #           raise e
         except pymysql.Warning as e:
             print(e)
-
         finally:
- #           self.cursor.close()
             return insert_id
 
     def myselectone(self, query):
@@ -81,12 +76,7 @@ class myMySQL():
             for i in range(len(columns)):
                 fields.append(columns[i][0])
 
-#            print(columns[0])
-#            print(columns[0][0])
-
- #           c = cursor.execute("SHOW FULL COLUMNS FROM users FROM blog")
             results = self.cursor.fetchall()
- #           results = self.cursor.fetchmany()
 
         except Exception as e:
             print(e)
@@ -112,17 +102,18 @@ class myMySQL():
         m.update(data.encode("utf-8"))
         datamd5 = m.hexdigest()
 
-        sql= "insert into gencase(host,url,method,cookie,headers,data,datamd5,response_header,response_cookie,response_text,response_status_code) values('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')" %  \
+        sql= "insert into gencase(host,url,method,cookie,headers,data,datamd5,response_header,response_cookie,response_text,response_status_code) values('%s','%s','%s','%s',\"%s\",'%s','%s',\"%s\",'%s','%s','%s')" %  \
                                 (host, url, method, cookie, headers, data, datamd5, response_header, response_cookie, response_text, response_status_code)
 
         self.myquery(sql)
-    def myselect_proxyed(self, url_pattern="", limit_num=0 ):
-        fields= "host, url, method, cookie, headers, data"
+
+    def myselect_case(self,  url_pattern="", limit_num=0 ,table="proxyed",fields="host, url, method, cookie,headers, data"):
+
         sql=""
         if url_pattern == "":
-            sql = "select %s from proxyed "  % (fields)
+            sql = "select %s from %s "  % (fields,table)
         else:
-            sql = "select "+fields+" from proxyed where url like '%"+url_pattern+"%'"
+            sql = "select "+fields+" from "+table+" where url like '%"+url_pattern+"%'"
 
         if limit_num > 0 :
             sql = sql +"limit " + str(limit_num)
@@ -134,50 +125,4 @@ class myMySQL():
 
 
 
-
-def gen_testcase(db,req):
-    host, url, method, cookie, headers, data = req
-#    print(url)
-    gendata_array = []
-    if "{" in data:
-        print("data  is json:"+ data)
-        jsondict = json.loads(data)
-        gendict_array = gencase_json(jsondict)
-        for d in gendict_array:
-            gendata_array.append(json.dumps(d))
-
-    if "=" in data:
-        print("data is query:"+ data)
-        gendata_array = gencase_query(data)
-    for gendata in gendata_array:
-        db.myinsert_gencase(host, url, method, cookie, headers, gendata)
-
-def test_testcase():
-    data = '{"a":1,"b":1,"name":"123"}'
-    jsondict = json.loads(data)
-    gendict_array = gencase_json(jsondict)
-    print(gendict_array)
-    print(len(gendict_array))
-
-    gendata = []
-    for d in gendict_array:
-        gendata.append(json.dumps(d))
-    print(gendata)
-    exit(0)
-
-
-if __name__ == '__main__':
-#     arr = gencase_query("wd=1&o=2&m=liujun")
-#     print(arr)
-#     print(len(arr))
-
-    db=  myMySQL("test")
-    db.myinsert_proxyed("www.baidu.com","http://www.baidu.com","GET")
-    db.myinsert_proxyed("www.baidu.com", "http://www.baidu.com/s", "GET",data="wd=wd2021")
-    db.myinsert_proxyed("www.baidu.com", "https://www.baidu.com/s", "GET",data="wd=wd2021&t=111")
-    db.myinsert_proxyed("127.0.0.1", "http://127.0.0.1/post.php?baidu", "POST",data='{"id": 1, "sn":234 , "city": "beijing"}')
-
-    results = db.myselect_proxyed("baidu",5)
-    for  record in results:
-         gen_testcase(db,record)
 

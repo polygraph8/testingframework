@@ -1,3 +1,4 @@
+use test;
 CREATE TABLE `proxyed` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `host` char(100) NOT NULL,

@@ -1,4 +1,4 @@
-#  手动转自动化测试框架    Automated Testing Testing Framework From Manual testing 
+#  手动转自动化接口测试框架    Automated Testing Testing Framework From Manual testing 
 
 A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
 It can do :

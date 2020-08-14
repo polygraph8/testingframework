@@ -1,4 +1,4 @@
-#  手动转自动WEB接口测试框架    Automated Testing Web Interface Testing Framework From Manual testing 
+#  来自手动测试的WEB接口自动化测试框架    Automated Testing Web Interface Testing Framework From Manual testing 
 
 A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
 It can do :

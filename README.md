@@ -33,7 +33,8 @@ It can do :
                     if 'live.kuaishou.com/rest/' in flow.request.url:
                     
            2- python3  runproxy.py ， 在8888 端口上启动http/https 代理 
-           3- 设置web/app请求代理后，设置mitmproxy 代理方法请参考：  https://www.jianshu.com/p/0cc558a8d6a2
+           3- 在手机上或者PC 上为http/https请求设置mitmproxy 代理，
+              设置mitmproxy 代理方法请参考：  https://www.jianshu.com/p/0cc558a8d6a2
 
 手动测试并且记录请求： 
            手动测试web和app应用。 系统会在后台记录请求。

@@ -15,14 +15,22 @@ It can do :
         通过泛化请求条件，例如：边界值，等价值,安全测试等，我们可以自动生成更多的测试用例。
         通过自动生成的测试用例，我们可以得到返回结果，以及预期的结果，以及判断对错。
 
+**系统依赖：**
+    **python:** 
+        python 3.7 
+        pip install mitmproxy pymysql    
+    **mysql:** 
+        gencase.sql 在 test数据库 建proxyed,gencase 两张表         
+
 **程序结构：**
 
-    record.py  记录对服务器的请求，包括header,url , method,cookie,data 
+    record.py  **记录**对服务器的请求，包括header,url , method,cookie,data 
     gencase.py 根据记录的请求参数的类型，为每个参数生成不同的数据值，组合为测试用例。
                目前支持的请求数据有 form-data, json, plaintext， 
                函数分别在：gencase_formdata(data)， gencase_json(jsondict)，gencase_query(data)
-    runcase.py 取出产生的测试用例，生成服务器请求，向服务器发送请求。
+    runcase.py **运行测试用例** 取出产生的测试用例，生成服务器请求，向服务器发送请求。
     mylib.py   测试用例保存在mysql 数据库中，提供接口函数进行测试用例的存取 
+    testcaselib.py **测试用例生成策略**代码
     
     results = db.myselect_case("rest",5,'gencase',fields)
     for  record in results:

@@ -1,4 +1,4 @@
-#  手动转自动化WEB接口测试框架    Automated Testing Web Interface Testing Framework From Manual testing 
+#  手动转自动WEB接口测试框架    Automated Testing Web Interface Testing Framework From Manual testing 
 
 A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
 It can do :
@@ -86,7 +86,7 @@ It can do :
 **License**
 This library is distributed under the GPL license .
 
-
+https://github.com/polygraph8/testingframework
 
 
     

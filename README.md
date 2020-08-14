@@ -1,4 +1,5 @@
-# testingframework， 测试自动化框架   
+# testingframework， 手动转自动化测试框架   From Manual testing to  Automated Testing Testing Framework
+
 A light Testng framework base on python , for web testing ,android/IOS app testing and testing for service interface.  
 It can do :
 1. record the web http request via mitmproxy
@@ -15,12 +16,34 @@ It can do :
         通过泛化请求条件，例如：边界值，等价值,安全测试等，我们可以自动生成更多的测试用例。
         通过自动生成的测试用例，我们可以得到返回结果，以及预期的结果，以及判断对错。
 
-**系统依赖：**
+**系统准备：**
     **python:** 
         python 3.7 
         pip install mitmproxy pymysql    
     **mysql:** 
         gencase.sql 在 test数据库 建proxyed,gencase 两张表         
+
+**系统运行**
+
+手动测试准备： 
+
+           1. 修改 record.py 中的 live.kuaishou.com/rest/ 为你需要测试的应用中的服务器url 
+               def response(flow):
+                    response =flow.response
+                    if 'live.kuaishou.com/rest/' in flow.request.url:
+                    
+           2- python3  runproxy.py ， 在8888 端口上启动http/https 代理 
+           3- 设置web/app请求代理后，设置mitmproxy 代理方法请参考：  https://www.jianshu.com/p/0cc558a8d6a2
+
+手动测试并且记录请求： 
+           手动测试web和app应用。 系统会在后台记录请求。
+
+生成测试用例：python3 gencase.py
+
+运行测试用例：python3  runcase.py 
+
+
+ 
 
 **程序结构：**
 

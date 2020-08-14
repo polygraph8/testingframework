@@ -4,7 +4,6 @@ import re
 
 from warnings import filterwarnings
 import hashlib
-from testcaselib import *
 filterwarnings("error",category=pymysql.Warning)  #  指定过滤告警的类别为 pymysql.Warning类，
 
 

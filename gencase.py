@@ -1,4 +1,5 @@
 from mylib import *
+from testcaselib import *
 
 max_gencase_num = 100
 
